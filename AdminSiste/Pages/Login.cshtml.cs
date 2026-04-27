@@ -5,15 +5,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using AdminSiste.Services;
 
-public class LoginModel : PageModel
+public class LoginModel(FakeAuthService auth) : PageModel
 {
-    private readonly FakeAuthService _auth;
+    private readonly FakeAuthService _auth = auth;
 
-    [BindProperty] public string Username { get; set; }
-    [BindProperty] public string Password { get; set; }
-    public string ErrorMessage { get; set; }
-
-    public LoginModel(FakeAuthService auth) => _auth = auth;
+    [BindProperty] public string? Username { get; set; }
+    [BindProperty] public string? Password { get; set; }
+    public string? ErrorMessage { get; set; }
 
     public void OnGet()
     {

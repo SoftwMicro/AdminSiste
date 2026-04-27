@@ -1,11 +1,30 @@
 @page
 @model LoginModel
-<form method="post">
-    <input type="text" name="Username" placeholder="Usuário" />
-    <input type="password" name="Password" placeholder="Senha" />
-    <button type="submit">Entrar</button>
+
+  <!-- Login Form -->
+  <div id="login-form">
+    <form method="post">
     @if (!string.IsNullOrEmpty(Model.ErrorMessage))
     {
-        <div style="color:red">@Model.ErrorMessage</div>
+      <div style="color:red">@Model.ErrorMessage</div>
     }
-</form>
+    <h2>Login</h2>
+    <input type="text" name="Username" id="login-usuario" placeholder="Usuário" autocomplete="username">
+    <input type="password"  name="Password" id="login-senha" placeholder="Senha" autocomplete="current-password">
+    <button type="submit">Entrar</button>
+    </form>
+    <p class="auth-toggle"><a href="#" onclick="toggleAuth('cadastro')">Não tenho conta? Cadastrar usuário</a></p>
+  </div>
+  <!-- Cadastro Form (hidden by default) -->
+  <div id="cadastro-form" style="display:none;">
+    <h2>Cadastro</h2>
+    <input type="email" id="cadastro-email" placeholder="E-mail" autocomplete="email">
+    <input type="text" id="cadastro-nome" placeholder="Nome Completo" autocomplete="name">
+    <input type="text" id="cadastro-usuario" placeholder="Nome de Usuário" autocomplete="username">
+    <input type="password" id="cadastro-senha" placeholder="Senha" autocomplete="new-password">
+    <button type="submit">Entrar</button>
+    <button onclick="cadastrar()">Finalizar Cadastro</button>
+    <p class="auth-toggle"><a href="#" onclick="toggleAuth('login')">Já tenho conta? Voltar ao Login</a></p>
+  </div>
+
+
