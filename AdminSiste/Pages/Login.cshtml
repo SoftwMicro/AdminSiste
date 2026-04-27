@@ -1,0 +1,11 @@
+@page
+@model LoginModel
+<form method="post">
+    <input type="text" name="Username" placeholder="Usuário" />
+    <input type="password" name="Password" placeholder="Senha" />
+    <button type="submit">Entrar</button>
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div style="color:red">@Model.ErrorMessage</div>
+    }
+</form>

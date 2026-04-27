@@ -1,0 +1,71 @@
+# .gitignore for ASP.NET Core 10 / .NET 10
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# DotCover
+.idea/
+*.dotCover
+
+# NCrunch
+*.ncrunch*
+.*crunch*.local.xml
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Entity Framework
+*.dbmdl
+*.jfm
+
+# Azure Stream Analytics local run output
+ASALocalRun/
+
+# mds folder (custom, as requested)
+mds/
+
+# Others
+*.log
+*.vspscc
+*.vssscc
+*.pdb
+*.cache
+*.config
+*.bak
+*.tmp
+*.swp
+*.sln.ide
+
+# Do not ignore environment files
+!appsettings.json
+!appsettings.Development.json
+
+# Do not ignore wwwroot (static files)
+!wwwroot/
