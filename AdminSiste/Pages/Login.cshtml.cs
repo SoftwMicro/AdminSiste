@@ -20,7 +20,7 @@ public class LoginModel(FakeAuthService auth) : PageModel
 
     public async Task<IActionResult> OnPost()
     {
-        if (_auth.Login(Username, Password))
+        if (Username != null && Password != null && _auth.Login(Username, Password))
         {
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, Username) };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
