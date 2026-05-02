@@ -1,0 +1,328 @@
+/* Fundo de autenticação igual ao index.html */
+body.auth-bg {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../img/Wallpapercorporativo.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Centraliza o container de autenticação */
+.auth-container {
+  background: #fff;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  min-width: 320px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-container h2 {
+  margin-bottom: 1.5rem;
+  color: #2d3a4a;
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  outline: none;
+  background: #f8fafc;
+  box-sizing: border-box;
+}
+
+.auth-container input:focus {
+  border-color: #6366f1;
+  background: #fff;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 0.7rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+}
+
+.auth-container button:hover {
+  background: #4f46e5;
+}
+
+.auth-toggle {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.auth-toggle a {
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 0.98rem;
+  transition: color 0.2s;
+}
+.auth-toggle a:hover {
+  color: #2d3a4a;
+  text-decoration: underline;
+}
+/* Alinha o botão Login à direita e afasta do topo */
+.login-right {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+}
+  /* Painel Outsourcing - Fade-in/Fade-out */
+  #painel-outsourcing-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 3000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
+    opacity: 0;
+  }
+  #painel-outsourcing-fade[style*="display: flex"] {
+    display: flex !important;
+  }
+  #painel-outsourcing-fade .img-outsourcing-fade {
+    margin-top: 120px;
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+    border-radius: 12px;
+    background: #fff0;
+  }
+  #fechar-outsourcing-fade {
+    position: absolute;
+    top: 24px;
+    right: 40px;
+    background: rgba(0,0,0,0.25);
+    border: none;
+    color: #fff;
+    font-size: 2.2rem;
+    cursor: pointer;
+    z-index: 3100;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    opacity: 0.85;
+  }
+  #fechar-outsourcing-fade:hover {
+    background: rgba(255,255,255,0.18);
+    color: #ff6b6b;
+    opacity: 1;
+  }
+  /* Painel Lateral Outsourcing - Dinâmico */
+  #painel-lateral-outsourcing {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: block;
+    transition: right 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  #painel-lateral-outsourcing.aberto {
+    right: 0;
+  }
+  #painel-lateral-outsourcing .img-painel-outsourcing {
+    display: block;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  #fechar-painel-outsourcing {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 2100;
+    transition: color 0.2s;
+  }
+  #fechar-painel-outsourcing:hover {
+    color: #ff6b6b;
+  }
+  .accordion {
+    margin-top: 2rem;
+  }
+  .accordion-item {
+    background: rgba(255,255,255,0.85);
+    color: #222;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .accordion-item.aberto {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .accordion-header {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    font-size: 1.15rem;
+    user-select: none;
+  }
+  .accordion-icon {
+    margin-right: 0.7em;
+    font-size: 1.3em;
+    transition: transform 0.3s;
+  }
+  .accordion-item.aberto .accordion-icon {
+    transform: rotate(90deg);
+  }
+  .accordion-content {
+    background: rgba(255,255,255,0.95);
+    color: #222;
+    padding: 0 1.5rem 1rem 2.2rem;
+    font-size: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .accordion-item.aberto .accordion-content {
+    /* max-height é ajustado via JS */
+  }
+   body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Plano de fundo */
+    .background {
+      background: url('../img/Wallpapercorporativo.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Botões estilo fachada */
+    .menu button {
+      position: absolute;
+      background-color: #FF8C00; /* laranja sólido */
+      border: none;
+      padding: 14px 28px;
+      font-size: 18px;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    .menu button:hover {
+      transform: scale(1.05);
+      background-color: #FFA500; /* tom mais claro no hover */
+    }
+
+    #produtos { top: 35%; left: 10%; }
+    #outsourcing { top: 45%; left: 10%; }
+    #contato { top: 55%; left: 10%; }
+    #sobre { top: 65%; left: 10%; }
+    #vagas { top: 75%; left: 10%; }
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+    /* Painel Lateral Dinâmico */
+    #painel-lateral {
+      position: fixed;
+      top: 0;
+      right: -50%;
+      width: 50%;
+      height: 100vh;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      color: #fff;
+      z-index: 1000;
+      box-shadow: -2px 0 16px rgba(0,0,0,0.2);
+      transition: right 0.5s ease-in-out;
+      padding: 2rem 1.5rem 1.5rem 2rem;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: block;
+    }
+
+    #painel-lateral.aberto {
+      right: 0;
+    }
+
+    #painel-lateral h2 {
+      margin-top: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    #painel-lateral ul {
+      list-style: disc inside;
+      margin: 1.5rem 0 0 0.5rem;
+      padding: 0;
+    }
+
+    #painel-lateral li {
+      margin-bottom: 0.7rem;
+      font-size: 1.1rem;
+    }
+
+    #fechar-painel {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1100;
+      transition: color 0.2s;
+    }
+    #fechar-painel:hover {
+      color: #ff6b6b;
+    }
