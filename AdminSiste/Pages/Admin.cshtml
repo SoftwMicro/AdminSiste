@@ -1,5 +1,5 @@
 @page
 @attribute [Microsoft.AspNetCore.Authorization.Authorize]
 <h2>Área Administrativa</h2>
-<p>Bem-vindo, @User.Identity.Name!</p>
+<p>Bem-vindo, @User.Identity?.Name!</p>
 <a href="/Logout">Sair</a>
