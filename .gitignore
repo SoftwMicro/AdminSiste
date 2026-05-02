@@ -69,3 +69,13 @@ mds/
 
 # Do not ignore wwwroot (static files)
 !wwwroot/
+
+# Publish results
+publish/
+
+# Rider
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db

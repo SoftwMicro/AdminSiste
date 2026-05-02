@@ -1,3 +1,24 @@
+/* Custom dropdown background color */
+.dropdown-menu {
+  --bs-dropdown-bg: #3f486c !important;
+}
+/* Navbar custom color for links and menus */
+.navbar .navbar-nav .nav-link,
+.navbar .navbar-brand,
+.navbar .navbar-nav .dropdown-menu .dropdown-item {
+  color: #f3faff !important;
+}
+
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-brand:focus,
+.navbar .navbar-brand:hover,
+.navbar .navbar-nav .dropdown-menu .dropdown-item:focus,
+.navbar .navbar-nav .dropdown-menu .dropdown-item:hover {
+  color: #f3faff !important;
+  background-color: rgba(0,0,0,0.05);
+}
 /* Fundo de autenticação igual ao index.html */
 body.auth-bg {
   min-height: 100vh;
@@ -12,14 +33,14 @@ body.auth-bg {
 /* Centraliza o container de autenticação */
 .auth-container {
   background: #fff;
-  padding: 2.5rem 2rem 2rem 2rem;
-  border-radius: 18px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
-  min-width: 320px;
-  max-width: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 0;
+  max-width: none;
+  width: 100vw;
+  min-height: 100vh;
+  display: block;
 }
 
 .auth-container h2 {
