@@ -2,8 +2,8 @@
 @model LoginModel
 
   <!-- Login Form -->
-  <div id="login-form">
-    <form method="post">
+  <div id="login-form" class="custom-login-form" style="width:300px;box-sizing:border-box;">
+      <form method="post">
     @if (!string.IsNullOrEmpty(Model.ErrorMessage))
     {
       <div style="color:red">@Model.ErrorMessage</div>

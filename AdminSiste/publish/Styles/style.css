@@ -1,3 +1,9 @@
+/* Especificidade máxima para garantir largura do login-form */
+.auth-container #login-form {
+  width: 200px !important;
+  box-sizing: border-box !important;
+}
+/* Largura fixa para o formulário de login */
 /* Fundo de autenticação igual ao index.html */
 body.auth-bg {
   min-height: 100vh;
