@@ -2,9 +2,20 @@
 using AdminSiste.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
+
+using AdminSiste.Data;
+using Microsoft.EntityFrameworkCore;
+using AdminSiste.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<FakeAuthService>();
+// Configuração do MySQL
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+    $"server=localhost;port=3306;database=mydb;user=dev_user;password=devpassword";
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -15,7 +26,16 @@ builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
 
 
+
 var app = builder.Build();
+
+// Cria banco e seed inicial
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.EnsureCreated();
+    db.Seed();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
