@@ -39,13 +39,12 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarMenu">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" href="#">C#</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="conceitosDropdown" role="button" data-bs-toggle="dropdown">
-                                    Conceitos básicos
+                                    Curso - DevOps Agentes IA
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Tour do C#</a></li>
+                                    <li><a class="dropdown-item" href="Modulo">Modúlo 1</a></li>
                                     <li><a class="dropdown-item" href="#">Conceitos básicos</a></li>
                                     <li><a class="dropdown-item" href="#">Novidades</a></li>
                                 </ul>
@@ -53,8 +52,8 @@
                             <li class="nav-item"><a class="nav-link" href="#">Recursos</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Referência</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Especificações</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Cargas de trabalho do .NET</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">APIs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">códigos fonte</a></li>
+
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link" href="/Logout">Sair</a></li>
@@ -68,6 +67,7 @@
      @RenderBody()
     </div>
    @await RenderSectionAsync("Scripts", required: false)
-   <script src="~/js/login.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/login.js"></script>
 </body>
 </html>
