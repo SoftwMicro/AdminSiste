@@ -1,0 +1,79 @@
+@page "/Cliente/ClienteCadastro"
+@model AdminSiste.Pages.Cliente.ClienteCadastroModel
+@{
+    ViewData["Title"] = "Cadastro de Cliente";
+}
+
+<div class="card mt-5" style="min-width: 1200px;">
+    <div class="card-header">
+        <i class="fa fa-pencil-square-o"></i> Dados gerais
+    </div>
+    
+    <div class="card-body">
+        <form method="post">
+            <!-- Primeira linha -->
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="ClienteTipoPessoa">Tipo de cliente</label>
+                    <select id="ClienteTipoPessoa" name="Cliente.TipoPessoa" class="form-control" required>
+                        <option value="">Selecione</option>
+                        <option value="PF">Pessoa Física</option>
+                        <option value="PJ">Pessoa Jurídica</option>
+                        <option value="ES">Estrangeiro</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="ClienteSituacao">Situação</label>
+                    <select id="ClienteSituacao" name="Cliente.Situacao" class="form-control">
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="ClienteNome">Nome</label>
+                    <input type="text" id="ClienteNome" name="Cliente.Nome" maxlength="100" class="form-control" required />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="ClienteEmail">E-mail</label>
+                    <input type="email" id="ClienteEmail" name="Cliente.Email" maxlength="60" class="form-control" />
+                    <span class="text-danger" asp-validation-for="Cliente.Email"></span>
+                </div>
+            </div>
+
+            <!-- Segunda linha -->
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="ClienteTelefone">Telefone comercial</label>
+                    <input type="text" id="ClienteTelefone" name="Cliente.Telefone" maxlength="50" class="form-control" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="ClienteCelular">Telefone celular</label>
+                    <input type="text" id="ClienteCelular" name="Cliente.Celular" maxlength="50" class="form-control" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="ClienteFax">FAX</label>
+                    <input type="text" id="ClienteFax" name="Cliente.Fax" maxlength="50" class="form-control" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="ClienteSite">Site</label>
+                    <input type="text" id="ClienteSite" name="Cliente.Site" maxlength="100" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Terceira linha -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="ClienteVendedor">Vendedor / Responsável</label>
+                    <input type="text" id="ClienteVendedor" name="Cliente.Vendedor" class="form-control" placeholder="Digite para buscar" autocomplete="off" />
+                </div>
+            </div>
+
+            <!-- Botão -->
+            <div class="row mt-3">
+                <div class="col-md-12 text-right">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,11 +1,9 @@
 
+using AdminSiste.Services.Cliente;
 using AdminSiste.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
-
 using AdminSiste.Data;
 using Microsoft.EntityFrameworkCore;
-using AdminSiste.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
