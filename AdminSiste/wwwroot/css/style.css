@@ -247,12 +247,25 @@ body.auth-bg {
   .accordion-item.aberto .accordion-content {
     /* max-height é ajustado via JS */
   }
-   body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
-    }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: auto;
+    font-family: Arial, sans-serif;
+    overflow: auto;
+  }
+
+  body {
+    min-height: 100vh;
+    height: auto;
+    overflow: auto;
+    margin-top: 20px !important;
+    /* Remove transformações e posições fixas que possam causar deslocamento */
+    position: static !important;
+    transform: none !important;
+  }
 
     /* Plano de fundo */
     .background {
