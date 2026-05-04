@@ -33,5 +33,9 @@ namespace AdminSiste.Models.Cliente
         public int Situacao { get; set; } // 1 = Ativo, 0 = Inativo
 
         public string Vendedor { get; set; } // Autocomplete
+
+        // Relacionamentos
+        public ICollection<Endereco> Enderecos { get; set; } = new List<Endereco>();
+        public ICollection<Contato> Contatos { get; set; } = new List<Contato>();
     }
 }

@@ -2,6 +2,8 @@
 
 ## Estrutura de Pastas
 
+Arquitetura
+
 ```
 Admin.sln
 README.md

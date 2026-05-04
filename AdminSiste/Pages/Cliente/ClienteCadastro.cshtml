@@ -75,5 +75,107 @@
                 </div>
             </div>
         </form>
+        <!-- Endereços -->
+        <div class="mt-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="m-0"><i class="glyphicon glyphicon-map-marker"></i> Endereço</h5>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <!-- Espaçadores/Ações futuros -->
+                        </div>
+                        <!-- Primeira linha -->
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="EnderecoTipo">Tipo</label>
+                                <input type="text" class="form-control" id="EnderecoTipo" name="Endereco.Tipo" placeholder="Tipo" autocomplete="off" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="EnderecoCEP">CEP</label>
+                                <input type="text" class="form-control" id="EnderecoCEP" name="Endereco.CEP" maxlength="10" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="EnderecoLogradouro">Logradouro</label>
+                                <input type="text" class="form-control" id="EnderecoLogradouro" name="Endereco.Logradouro" maxlength="150" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="EnderecoNumero">Número</label>
+                                <input type="text" class="form-control" id="EnderecoNumero" name="Endereco.Numero" maxlength="10" />
+                            </div>
+                        </div>
+                        <!-- Segunda linha -->
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="EnderecoComplemento">Complemento</label>
+                                <input type="text" class="form-control" id="EnderecoComplemento" name="Endereco.Complemento" maxlength="100" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="EnderecoBairro">Bairro</label>
+                                <input type="text" class="form-control" id="EnderecoBairro" name="Endereco.Bairro" maxlength="100" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="EnderecoCidade">Cidade</label>
+                                <input type="text" class="form-control" id="EnderecoCidade" name="Endereco.Cidade" maxlength="100" autocomplete="off" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="EnderecoUF">UF</label>
+                                <input type="text" class="form-control" id="EnderecoUF" name="Endereco.UF" maxlength="2" />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12 text-right">
+                                <button id="AdicionarEndereco" type="button" class="btn btn-primary">
+                                    <i class="fa fa-plus-circle"></i> Adicionar Endereço
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contatos -->
+        <div class="mt-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="m-0"><i class="glyphicon glyphicon-earphone"></i> Contato</h5>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <!-- Espaçadores/Ações futuros -->
+                        </div>
+                        <!-- Primeira linha -->
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="ContatoTelefoneComercial">Telefone Comercial</label>
+                                <input type="text" class="form-control" id="ContatoTelefoneComercial" name="Contato.TelefoneComercial" maxlength="50" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="ContatoTelefoneCelular">Telefone Celular</label>
+                                <input type="text" class="form-control" id="ContatoTelefoneCelular" name="Contato.TelefoneCelular" maxlength="50" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="ContatoFax">Fax</label>
+                                <input type="text" class="form-control" id="ContatoFax" name="Contato.Fax" maxlength="50" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="ContatoEmail">E-mail</label>
+                                <input type="email" class="form-control" id="ContatoEmail" name="Contato.Email" maxlength="60" />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12 text-right">
+                                <button id="AdicionarContato" type="button" class="btn btn-primary">
+                                    <i class="fa fa-plus-circle"></i> Adicionar Contato
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

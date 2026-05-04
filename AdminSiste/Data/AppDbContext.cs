@@ -8,6 +8,9 @@ namespace AdminSiste.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<AdminSiste.Models.Cliente.Cliente> Clientes { get; set; }
+        public DbSet<AdminSiste.Models.Cliente.Endereco> Enderecos { get; set; }
+        public DbSet<AdminSiste.Models.Cliente.Contato> Contatos { get; set; }
 
         public void Seed()
         {
