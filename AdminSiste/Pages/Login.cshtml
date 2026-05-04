@@ -2,7 +2,7 @@
 @model LoginModel
 
   <!-- Login Form -->
-  <div id="login-form" class="custom-login-form" style="width:300px;box-sizing:border-box;">
+    <div id="login-form" class="custom-login-form" style="width:300px;box-sizing:border-box;" @(ViewData["ShowCadastro"] != null && (bool)ViewData["ShowCadastro"] ? "style='display:none;'" : "")>
       <form method="post">
     @if (!string.IsNullOrEmpty(Model.ErrorMessage))
     {
@@ -16,15 +16,21 @@
     <p class="auth-toggle"><a href="#" onclick="toggleAuth('cadastro')">Não tenho conta? Cadastrar usuário</a></p>
   </div>
   <!-- Cadastro Form (hidden by default) -->
-  <div id="cadastro-form" style="display:none; width:500px;box-sizing:border-box;">
-    <h2>Cadastro</h2>
-    <input type="email" id="cadastro-email" placeholder="E-mail" autocomplete="email">
-    <input type="text" id="cadastro-nome" placeholder="Nome Completo" autocomplete="name">
-    <input type="text" id="cadastro-usuario" placeholder="Nome de Usuário" autocomplete="username">
-    <input type="password" id="cadastro-senha" placeholder="Senha" autocomplete="new-password">
-    <button type="submit">Entrar</button>
-    <button onclick="cadastrar()">Finalizar Cadastro</button>
-    <p class="auth-toggle"><a href="#" onclick="toggleAuth('login')">Já tenho conta? Voltar ao Login</a></p>
+  <div id="cadastro-form" style="@(ViewData["ShowCadastro"] != null && (bool)ViewData["ShowCadastro"] ? "display:block;" : "display:none;") width:500px;box-sizing:border-box;">
+    <form method="post" asp-page-handler="Cadastro">
+      <h2>Cadastro</h2>
+      <input type="email" name="CadastroEmail" id="cadastro-email" placeholder="E-mail" autocomplete="email" required>
+      <input type="text" name="CadastroNomeCompleto" id="cadastro-nome" placeholder="Nome Completo" autocomplete="name" required>
+      <input type="text" name="CadastroUsername" id="cadastro-usuario" placeholder="Nome de Usuário" autocomplete="username" required>
+      <input type="password" name="CadastroSenha" id="cadastro-senha" placeholder="Senha" autocomplete="new-password" required>
+      <button type="submit">Finalizar Cadastro</button>
+      @if (!string.IsNullOrEmpty(Model.CadastroMensagem))
+      {
+        var isSuccess = Model.CadastroSucesso ?? false;
+        <div style="color:@(isSuccess ? "green" : "red")">@Model.CadastroMensagem</div>
+      }
+      <p class="auth-toggle"><a href="#" onclick="toggleAuth('login')">Já tenho conta? Voltar ao Login</a></p>
+    </form>
   </div>
 
 

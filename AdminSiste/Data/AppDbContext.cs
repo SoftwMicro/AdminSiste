@@ -17,6 +17,7 @@ namespace AdminSiste.Data
                 {
                     Email = "admin@admin.com",
                     NomeCompleto = "Administrador",
+                    Username = "admin",
                     Senha = "123456"
                 });
                 SaveChanges();
