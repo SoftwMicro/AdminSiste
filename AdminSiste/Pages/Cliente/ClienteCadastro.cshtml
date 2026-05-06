@@ -4,178 +4,222 @@
     ViewData["Title"] = "Cadastro de Cliente";
 }
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="modal fade show" id="modalSucesso" tabindex="-1" style="display:block; background:rgba(0,0,0,0.5);"
+         aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Sucesso</h5>
+                </div>
+                <div class="modal-body">
+                    <p>@TempData["MensagemSucesso"]</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/Cliente/ClienteCadastro" class="btn btn-success">OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>setTimeout(function () { window.location.href = '/Cliente/ClienteCadastro'; }, 3000);</script>
+}
+
 <div class="card mt-5" style="min-width: 1200px;">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
     <div class="card-header">
         <i class="fa fa-pencil-square-o"></i> Dados gerais
     </div>
     
     <div class="card-body">
-        <form method="post">
+        <form method="post" id="formCliente">
+            <!-- Campo oculto para o Id do Cliente -->
+            <input asp-for="Cliente.Id" type="hidden" />
             <!-- Primeira linha -->
             <div class="row">
                 <div class="col-md-3 mb-3">
-                    <label for="ClienteTipoPessoa">Tipo de cliente</label>
-                    <select id="ClienteTipoPessoa" name="Cliente.TipoPessoa" class="form-control" required>
+                    <label asp-for="Cliente.TipoPessoa">Tipo de cliente</label>
+                    <select asp-for="Cliente.TipoPessoa" class="form-control" required>
                         <option value="">Selecione</option>
                         <option value="PF">Pessoa Física</option>
                         <option value="PJ">Pessoa Jurídica</option>
                         <option value="ES">Estrangeiro</option>
                     </select>
+                    <span asp-validation-for="Cliente.TipoPessoa" class="text-danger"></span>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="ClienteSituacao">Situação</label>
-                    <select id="ClienteSituacao" name="Cliente.Situacao" class="form-control">
+                    <label asp-for="Cliente.Situacao">Situação</label>
+                    <select asp-for="Cliente.Situacao" class="form-control">
                         <option value="1">Ativo</option>
                         <option value="0">Inativo</option>
                     </select>
+                    <span asp-validation-for="Cliente.Situacao" class="text-danger"></span>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="ClienteNome">Nome</label>
-                    <input type="text" id="ClienteNome" name="Cliente.Nome" maxlength="100" class="form-control" required />
+                    <label asp-for="Cliente.Nome">Nome</label>
+                    <input asp-for="Cliente.Nome" class="form-control" required />
+                    <span asp-validation-for="Cliente.Nome" class="text-danger"></span>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="ClienteEmail">E-mail</label>
-                    <input type="email" id="ClienteEmail" name="Cliente.Email" maxlength="60" class="form-control" />
-                    <span class="text-danger" asp-validation-for="Cliente.Email"></span>
+                    <label asp-for="Cliente.Email">E-mail</label>
+                    <input asp-for="Cliente.Email" class="form-control" />
+                    <span asp-validation-for="Cliente.Email" class="text-danger"></span>
                 </div>
             </div>
 
             <!-- Segunda linha -->
             <div class="row">
                 <div class="col-md-3 mb-3">
-                    <label for="ClienteTelefone">Telefone comercial</label>
-                    <input type="text" id="ClienteTelefone" name="Cliente.Telefone" maxlength="50" class="form-control" />
+                    <label asp-for="Cliente.Telefone">Telefone comercial</label>
+                    <input asp-for="Cliente.Telefone" class="form-control" />
+                    <span asp-validation-for="Cliente.Telefone" class="text-danger"></span>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="ClienteCelular">Telefone celular</label>
-                    <input type="text" id="ClienteCelular" name="Cliente.Celular" maxlength="50" class="form-control" />
+                    <label asp-for="Cliente.Celular">Telefone celular</label>
+                    <input asp-for="Cliente.Celular" class="form-control" />
+                    <span asp-validation-for="Cliente.Celular" class="text-danger"></span>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="ClienteFax">FAX</label>
-                    <input type="text" id="ClienteFax" name="Cliente.Fax" maxlength="50" class="form-control" />
+                    <label asp-for="Cliente.Fax">FAX</label>
+                    <input asp-for="Cliente.Fax" class="form-control" />
+                    <span asp-validation-for="Cliente.Fax" class="text-danger"></span>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="ClienteSite">Site</label>
-                    <input type="text" id="ClienteSite" name="Cliente.Site" maxlength="100" class="form-control" />
+                    <label asp-for="Cliente.Site">Site</label>
+                    <input asp-for="Cliente.Site" class="form-control" />
+                    <span asp-validation-for="Cliente.Site" class="text-danger"></span>
                 </div>
             </div>
 
             <!-- Terceira linha -->
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="ClienteVendedor">Vendedor / Responsável</label>
-                    <input type="text" id="ClienteVendedor" name="Cliente.Vendedor" class="form-control" placeholder="Digite para buscar" autocomplete="off" />
+                    <label asp-for="Cliente.Vendedor">Vendedor / Responsável</label>
+                    <input asp-for="Cliente.Vendedor" class="form-control" placeholder="Digite para buscar" autocomplete="off" />
+                    <span asp-validation-for="Cliente.Vendedor" class="text-danger"></span>
                 </div>
             </div>
 
-            <!-- Botão -->
+         
+            <!-- Endereços -->
+            <div class="mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0"><i class="glyphicon glyphicon-map-marker"></i> Endereço</h5>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <!-- Espaçadores/Ações futuros -->
+                            </div>
+                            <!-- Primeira linha -->
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Enderecos[0].Tipo">Tipo</label>
+                                    <input asp-for="Cliente.Enderecos[0].Tipo" class="form-control" placeholder="Tipo" autocomplete="off" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Enderecos[0].CEP">CEP</label>
+                                    <input asp-for="Cliente.Enderecos[0].CEP" class="form-control" maxlength="10" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Enderecos[0].Logradouro">Logradouro</label>
+                                    <input asp-for="Cliente.Enderecos[0].Logradouro" class="form-control" maxlength="150" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Enderecos[0].Numero">Número</label>
+                                    <input asp-for="Cliente.Enderecos[0].Numero" class="form-control" maxlength="10" />
+                                </div>
+                            </div>
+                            <!-- Segunda linha -->
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Enderecos[0].Complemento">Complemento</label>
+                                    <input asp-for="Cliente.Enderecos[0].Complemento" class="form-control" maxlength="100" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Enderecos[0].Bairro">Bairro</label>
+                                    <input asp-for="Cliente.Enderecos[0].Bairro" class="form-control" maxlength="100" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Enderecos[0].Cidade">Cidade</label>
+                                    <input asp-for="Cliente.Enderecos[0].Cidade" class="form-control" maxlength="100" autocomplete="off" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Enderecos[0].UF">UF</label>
+                                    <input asp-for="Cliente.Enderecos[0].UF" class="form-control" maxlength="2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Botão de adicionar endereço removido -->
+                    <!-- Botão de adicionar contato removido -->
+            </div>
+
+            <!-- Contatos -->
+            <div class="mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0"><i class="glyphicon glyphicon-earphone"></i> Contato</h5>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <!-- Espaçadores/Ações futuros -->
+                            </div>
+                            <!-- Primeira linha -->
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Contatos[0].TelefoneComercial">Telefone Comercial</label>
+                                    <input asp-for="Cliente.Contatos[0].TelefoneComercial" class="form-control" maxlength="50" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Contatos[0].TelefoneCelular">Telefone Celular</label>
+                                    <input asp-for="Cliente.Contatos[0].TelefoneCelular" class="form-control" maxlength="50" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Contatos[0].Fax">Fax</label>
+                                    <input asp-for="Cliente.Contatos[0].Fax" class="form-control" maxlength="50" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="Cliente.Contatos[0].Email">E-mail</label>
+                                    <input asp-for="Cliente.Contatos[0].Email" class="form-control" maxlength="60" />
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                    <!-- Botão de adicionar contato removido -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+               <!-- Botão -->
             <div class="row mt-3">
                 <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary" id="btnSalvar">Salvar</button>
                 </div>
             </div>
-        </form>
-        <!-- Endereços -->
-        <div class="mt-3">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="m-0"><i class="glyphicon glyphicon-map-marker"></i> Endereço</h5>
-                </div>
-                <div class="card-body">
-                    <div>
-                        <div class="d-flex justify-content-between mb-2">
-                            <!-- Espaçadores/Ações futuros -->
-                        </div>
-                        <!-- Primeira linha -->
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="EnderecoTipo">Tipo</label>
-                                <input type="text" class="form-control" id="EnderecoTipo" name="Endereco.Tipo" placeholder="Tipo" autocomplete="off" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="EnderecoCEP">CEP</label>
-                                <input type="text" class="form-control" id="EnderecoCEP" name="Endereco.CEP" maxlength="10" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="EnderecoLogradouro">Logradouro</label>
-                                <input type="text" class="form-control" id="EnderecoLogradouro" name="Endereco.Logradouro" maxlength="150" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="EnderecoNumero">Número</label>
-                                <input type="text" class="form-control" id="EnderecoNumero" name="Endereco.Numero" maxlength="10" />
-                            </div>
-                        </div>
-                        <!-- Segunda linha -->
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="EnderecoComplemento">Complemento</label>
-                                <input type="text" class="form-control" id="EnderecoComplemento" name="Endereco.Complemento" maxlength="100" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="EnderecoBairro">Bairro</label>
-                                <input type="text" class="form-control" id="EnderecoBairro" name="Endereco.Bairro" maxlength="100" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="EnderecoCidade">Cidade</label>
-                                <input type="text" class="form-control" id="EnderecoCidade" name="Endereco.Cidade" maxlength="100" autocomplete="off" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="EnderecoUF">UF</label>
-                                <input type="text" class="form-control" id="EnderecoUF" name="Endereco.UF" maxlength="2" />
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-12 text-right">
-                                <button id="AdicionarEndereco" type="button" class="btn btn-primary">
-                                    <i class="fa fa-plus-circle"></i> Adicionar Endereço
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Contatos -->
-        <div class="mt-3">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="m-0"><i class="glyphicon glyphicon-earphone"></i> Contato</h5>
-                </div>
-                <div class="card-body">
-                    <div>
-                        <div class="d-flex justify-content-between mb-2">
-                            <!-- Espaçadores/Ações futuros -->
-                        </div>
-                        <!-- Primeira linha -->
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="ContatoTelefoneComercial">Telefone Comercial</label>
-                                <input type="text" class="form-control" id="ContatoTelefoneComercial" name="Contato.TelefoneComercial" maxlength="50" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="ContatoTelefoneCelular">Telefone Celular</label>
-                                <input type="text" class="form-control" id="ContatoTelefoneCelular" name="Contato.TelefoneCelular" maxlength="50" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="ContatoFax">Fax</label>
-                                <input type="text" class="form-control" id="ContatoFax" name="Contato.Fax" maxlength="50" />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="ContatoEmail">E-mail</label>
-                                <input type="email" class="form-control" id="ContatoEmail" name="Contato.Email" maxlength="60" />
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-12 text-right">
-                                <button id="AdicionarContato" type="button" class="btn btn-primary">
-                                    <i class="fa fa-plus-circle"></i> Adicionar Contato
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
+        <script>
+            document.getElementById('formCliente').addEventListener('submit', function (e) {
+                var btn = document.getElementById('btnSalvar');
+                btn.disabled = true;
+                btn.innerText = 'Salvando...';
+            });
+        </script>
+       
     </div>
 </div>
