@@ -20,8 +20,13 @@ namespace AdminSiste.Pages.Cliente
         [TempData]
         public string MensagemSucesso { get; set; }
 
-        public void OnGet()
+        public void OnGet(int? id = null)
         {
+            if (id.HasValue)
+            {
+                // Buscar cliente completo para edição
+                Cliente = _clienteService.ObterPorIdCompleto(id.Value);
+            }
             if (Cliente == null)
                 Cliente = new ClienteModel();
             if (Cliente.Enderecos == null || Cliente.Enderecos.Count == 0)
