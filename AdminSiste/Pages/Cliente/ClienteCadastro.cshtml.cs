@@ -15,38 +15,35 @@ namespace AdminSiste.Pages.Cliente
 
         [BindProperty]
         public ClienteModel Cliente { get; set; }
-        [BindProperty]
-        public AdminSiste.Models.Cliente.Endereco Endereco { get; set; }
-        [BindProperty]
-        public AdminSiste.Models.Cliente.Contato Contato { get; set; }
+
 
         [TempData]
         public string MensagemSucesso { get; set; }
 
         public void OnGet()
         {
-            // Inicialização se necessário
+            if (Cliente == null)
+                Cliente = new ClienteModel();
+            if (Cliente.Enderecos == null || Cliente.Enderecos.Count == 0)
+                Cliente.Enderecos = new List<AdminSiste.Models.Cliente.Endereco> { new AdminSiste.Models.Cliente.Endereco() };
+            if (Cliente.Contatos == null || Cliente.Contatos.Count == 0)
+                Cliente.Contatos = new List<AdminSiste.Models.Cliente.Contato> { new AdminSiste.Models.Cliente.Contato() };
         }
 
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
+                if (Cliente == null)
+                    Cliente = new ClienteModel();
+                if (Cliente.Enderecos == null || Cliente.Enderecos.Count == 0)
+                    Cliente.Enderecos = new List<AdminSiste.Models.Cliente.Endereco> { new AdminSiste.Models.Cliente.Endereco() };
+                if (Cliente.Contatos == null || Cliente.Contatos.Count == 0)
+                    Cliente.Contatos = new List<AdminSiste.Models.Cliente.Contato> { new AdminSiste.Models.Cliente.Contato() };
                 return Page();
             }
             try
             {
-                // Ajuste: apenas um endereço e um contato
-                if (Endereco != null && !string.IsNullOrWhiteSpace(Endereco.CEP))
-                    Cliente.Enderecos = new List<AdminSiste.Models.Cliente.Endereco> { Endereco };
-                else
-                    Cliente.Enderecos = new List<AdminSiste.Models.Cliente.Endereco>();
-
-                if (Contato != null && !string.IsNullOrWhiteSpace(Contato.Email))
-                    Cliente.Contatos = new List<AdminSiste.Models.Cliente.Contato> { Contato };
-                else
-                    Cliente.Contatos = new List<AdminSiste.Models.Cliente.Contato>();
-
                 _clienteService.Salvar(Cliente);
                 MensagemSucesso = "Cadastro realizado com sucesso!";
                 return RedirectToPage("/Cliente/ClienteCadastro");

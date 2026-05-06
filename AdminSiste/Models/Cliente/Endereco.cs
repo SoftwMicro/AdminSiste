@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace AdminSiste.Models.Cliente
 {
@@ -34,6 +35,7 @@ namespace AdminSiste.Models.Cliente
 
         // Relacionamento
         public int ClienteId { get; set; }
+        [ValidateNever]
         public Cliente Cliente { get; set; }
     }
 }

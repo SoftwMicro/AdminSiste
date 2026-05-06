@@ -44,13 +44,13 @@
     <div class="card-body">
         <form method="post" id="formCliente">
             <!-- Campo oculto para o Id do Cliente -->
-            <input asp-for="Cliente.Id" type="hidden" />
+          
             <!-- Primeira linha -->
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <label asp-for="Cliente.TipoPessoa">Tipo de cliente</label>
                     <select asp-for="Cliente.TipoPessoa" class="form-control" required>
-                        <option value="">Selecione</option>
+                        <option value="SL">Selecione</option>
                         <option value="PF">Pessoa Física</option>
                         <option value="PJ">Pessoa Jurídica</option>
                         <option value="ES">Estrangeiro</option>
