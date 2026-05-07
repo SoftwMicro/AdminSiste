@@ -64,5 +64,42 @@ namespace AdminSiste.Services.Cliente
         {
             return _context.Clientes.ToList();
         }
+        public void Atualizar(ClienteModel cliente)
+        {
+            if (cliente == null || cliente.Id <= 0)
+                throw new System.Exception("Cliente inválido para atualização");
+            if (cliente.Enderecos == null || !cliente.Enderecos.Any())
+                throw new System.Exception("Endereço obrigatório");
+            if (cliente.Contatos == null || !cliente.Contatos.Any())
+                throw new System.Exception("Contato obrigatório");
+
+            var existente = _context.Clientes
+                .Include(c => c.Enderecos)
+                .Include(c => c.Contatos)
+                .FirstOrDefault(c => c.Id == cliente.Id);
+            if (existente == null)
+                throw new System.Exception("Cliente não encontrado para atualização");
+
+            // Atualizar propriedades principais
+            existente.Nome = cliente.Nome;
+            existente.Email = cliente.Email;
+            existente.Telefone = cliente.Telefone;
+            existente.Celular = cliente.Celular;
+            existente.Fax = cliente.Fax;
+            existente.Site = cliente.Site;
+            existente.TipoPessoa = cliente.TipoPessoa;
+            existente.Situacao = cliente.Situacao;
+            existente.Vendedor = cliente.Vendedor;
+
+            // Atualizar endereços e contatos (simples: remove e adiciona)
+            existente.Enderecos.Clear();
+            foreach (var end in cliente.Enderecos)
+                existente.Enderecos.Add(end);
+            existente.Contatos.Clear();
+            foreach (var cont in cliente.Contatos)
+                existente.Contatos.Add(cont);
+
+            _context.SaveChanges();
+        }
     }
 }

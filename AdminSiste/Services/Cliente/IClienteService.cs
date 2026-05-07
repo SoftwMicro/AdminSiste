@@ -24,5 +24,9 @@ namespace AdminSiste.Services.Cliente
         /// </summary>
         ClienteModel ObterPorIdCompleto(int id);
         // Outros métodos conforme necessidade
+        /// <summary>
+        /// Atualiza um cliente existente.
+        /// </summary>
+        void Atualizar(ClienteModel cliente);
     }
 }

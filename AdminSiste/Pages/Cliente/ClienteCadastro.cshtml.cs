@@ -49,9 +49,37 @@ namespace AdminSiste.Pages.Cliente
             }
             try
             {
-                _clienteService.Salvar(Cliente);
-                MensagemSucesso = "Cadastro realizado com sucesso!";
-                return RedirectToPage("/Cliente/ClienteCadastro");
+                if (Cliente.Id > 0)
+                {
+                    // Edição: buscar cliente existente, atualizar campos e salvar
+                    var clienteExistente = _clienteService.ObterPorIdCompleto(Cliente.Id);
+                    if (clienteExistente == null)
+                    {
+                        ModelState.AddModelError(string.Empty, "Cliente não encontrado para edição.");
+                        return Page();
+                    }
+                    // Atualizar campos principais
+                    clienteExistente.Nome = Cliente.Nome;
+                    clienteExistente.Email = Cliente.Email;
+                    clienteExistente.Telefone = Cliente.Telefone;
+                    clienteExistente.Celular = Cliente.Celular;
+                    clienteExistente.Fax = Cliente.Fax;
+                    clienteExistente.Site = Cliente.Site;
+                    clienteExistente.TipoPessoa = Cliente.TipoPessoa;
+                    clienteExistente.Situacao = Cliente.Situacao;
+                    clienteExistente.Vendedor = Cliente.Vendedor;
+                    clienteExistente.Enderecos = Cliente.Enderecos;
+                    clienteExistente.Contatos = Cliente.Contatos;
+                    _clienteService.Atualizar(clienteExistente);
+                    MensagemSucesso = "Edição realizada com sucesso!";
+                }
+                else
+                {
+                    // Novo cadastro
+                    _clienteService.Salvar(Cliente);
+                    MensagemSucesso = "Cadastro realizado com sucesso!";
+                }
+                return RedirectToPage("/Cliente/ClienteCadastro", new { id = Cliente.Id });
             }
             catch (System.Exception ex)
             {

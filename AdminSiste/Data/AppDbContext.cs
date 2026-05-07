@@ -12,6 +12,11 @@ namespace AdminSiste.Data
         public DbSet<AdminSiste.Models.Cliente.Endereco> Enderecos { get; set; }
         public DbSet<AdminSiste.Models.Cliente.Contato> Contatos { get; set; }
 
+        public DbSet<AdminSiste.Models.Produto.Produto> Produtos { get; set; }
+        public DbSet<AdminSiste.Models.Produto.ProdutoDetalhes> ProdutoDetalhes { get; set; }
+        public DbSet<AdminSiste.Models.Produto.Preco> Precos { get; set; }
+        public DbSet<AdminSiste.Models.Produto.Estoque> Estoques { get; set; }
+
         public void Seed()
         {
             if (!Usuarios.Any())

@@ -22,7 +22,9 @@
             </div>
         </div>
     </div>
-    <script>setTimeout(function () { window.location.href = '/Cliente/ClienteCadastro'; }, 3000);</script>
+    <script>
+        setTimeout(function () { window.location.href = '/Cliente/ClienteCadastro'; }, 3000);
+    </script>
 }
 
 <div class="card mt-5" style="min-width: 1200px;">
@@ -44,6 +46,7 @@
     <div class="card-body">
         <form method="post" id="formCliente">
             <!-- Campo oculto para o Id do Cliente -->
+            <input type="hidden" asp-for="Cliente.Id" />
           
             <!-- Primeira linha -->
             <div class="row">
