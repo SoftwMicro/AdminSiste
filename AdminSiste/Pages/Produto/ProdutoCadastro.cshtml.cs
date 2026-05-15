@@ -61,7 +61,7 @@ namespace AdminSiste.Pages.Produto
                     _produtoService.Salvar(Produto);
                     MensagemSucesso = "Cadastro realizado com sucesso!";
                 }
-                return RedirectToPage("/Produto/ProdutoCadastro", new { id = Produto.Id });
+                return RedirectToPage("/Produto/ProdutoLista");
             }
             catch (System.Exception ex)
             {

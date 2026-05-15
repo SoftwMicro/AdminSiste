@@ -1,0 +1,56 @@
+@page
+@model AdminSiste.Pages.Produto.ProdutoListaModel
+@{
+    ViewData["Title"] = "Lista de Produtos";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Lista de Produtos</h2>
+<a asp-page="ProdutoCadastro" class="btn btn-primary mb-3">Novo Produto</a>
+
+<table class="table table-striped table-bordered text-center align-middle">
+    <thead class="thead-dark">
+        <tr>
+            <th style="width: 120px;">Código Interno</th>
+            <th style="width: 250px;">Nome do Produto</th>
+            <th style="width: 120px;">Valor</th>
+            <th style="width: 120px;">Quantidade Atual</th>
+            <th style="width: 200px;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var produto in Model.Produtos)
+    {
+        <tr>
+            <td>@produto.Codigo</td>
+            <td>@produto.Nome</td>
+            <td>@produto.Preco?.ValorCustoMedio.ToString("C")</td>
+            <td>@produto.Estoque?.QuantidadeAtual</td>
+            <td>
+                <div class="d-flex justify-content-center gap-2">
+                    <a class="btn btn-sm btn-warning action-btn" asp-page="ProdutoCadastro" asp-route-id="@produto.Id">Editar</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@produto.Id" class="m-0 p-0">
+                        <button type="submit" class="btn btn-sm btn-danger action-btn" onclick="return confirm('Confirma exclusão?');">Excluir</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<style>
+    .action-btn {
+        min-width: 70px;
+        max-width: 70px;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 2px 4px;
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+    table th, table td {
+        vertical-align: middle;
+    }
+</style>
