@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 namespace AdminSiste.Models.Produto
 {
     public class Estoque
@@ -8,6 +10,7 @@ namespace AdminSiste.Models.Produto
         public decimal QuantidadeAtual { get; set; }
         // Relacionamento reverso
         public int ProdutoId { get; set; }
+         [ValidateNever]
         public Produto Produto { get; set; }
     }
 }

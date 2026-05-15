@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace AdminSiste.Models.Produto
 {
@@ -26,7 +27,7 @@ namespace AdminSiste.Models.Produto
         public string UnidadeEntradaId { get; set; }
         public decimal QuantidadeSaida { get; set; }
         public string UnidadeSaidaId { get; set; }
-
+        
         public ProdutoDetalhes Detalhes { get; set; }
         public Preco Preco { get; set; }
         public Estoque Estoque { get; set; }
