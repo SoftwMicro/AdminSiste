@@ -19,17 +19,12 @@ namespace AdminSiste.Data
 
         public void Seed()
         {
-            if (!Usuarios.Any())
-            {
-                Usuarios.Add(new Usuario
-                {
-                    Email = "admin@admin.com",
-                    NomeCompleto = "Administrador",
-                    Username = "admin",
-                    Senha = "123456"
-                });
-                SaveChanges();
-            }
+                // Verificar se já existem dados para evitar duplicação
+                //if (!Usuarios.Any())
+                //{
+                  //  Usuarios.Add(new Usuario { Nome = "Admin", Email = "admin@admin.com" });
+                    //SaveChanges();
+                //}
         }
     }
 }

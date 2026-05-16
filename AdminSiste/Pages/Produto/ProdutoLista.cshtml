@@ -26,7 +26,7 @@
             <td>@produto.Codigo</td>
             <td>@produto.Nome</td>
             <td>@(produto.Preco != null ? produto.Preco.ValorCustoMedio.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")) : "-")</td>
-            <td>@produto.Estoque?.QuantidadeAtual</td>
+            <td>@(produto.Estoque != null ? ((int)produto.Estoque.QuantidadeAtual).ToString() : "-")</td>
             <td>
                 <div class="d-flex justify-content-center gap-2">
                     <a class="btn btn-sm btn-warning action-btn" asp-page="ProdutoCadastro" asp-route-id="@produto.Id">Editar</a>
