@@ -168,19 +168,19 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Preco.ValorCustoMedio">Valor de Custo</label>
-                    <input asp-for="Produto.Preco.ValorCustoMedio" class="form-control" type="number" step="0.01" />
+                    <input asp-for="Produto.Preco.ValorCustoMedio" class="form-control moeda" type="text" />
                 </div>
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Preco.ValorDespesasAcessorias">Despesas Acessórias</label>
-                    <input asp-for="Produto.Preco.ValorDespesasAcessorias" class="form-control" type="number" step="0.01" />
+                    <input asp-for="Produto.Preco.ValorDespesasAcessorias" class="form-control moeda" type="text" />
                 </div>
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Preco.ValorOutrasDespesas">Outras Despesas</label>
-                    <input asp-for="Produto.Preco.ValorOutrasDespesas" class="form-control" type="number" step="0.01" />
+                    <input asp-for="Produto.Preco.ValorOutrasDespesas" class="form-control moeda" type="text" />
                 </div>
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Preco.ValorCusto">Custo Final</label>
-                    <input asp-for="Produto.Preco.ValorCusto" class="form-control" type="number" step="0.01" />
+                    <input asp-for="Produto.Preco.ValorCusto" class="form-control moeda" type="text" />
                 </div>
             </div>
             <div class="row">
@@ -212,7 +212,25 @@
             </div>
         </form>
         <script>
+            // Máscara para moeda brasileira
+            document.querySelectorAll('.moeda').forEach(function (el) {
+                el.addEventListener('input', function (e) {
+                    let v = e.target.value.replace(/\D/g, "");
+                    v = (v/100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                    e.target.value = v;
+                });
+                // Ao carregar, formata valor inicial se houver
+                if (el.value) {
+                    let v = el.value.replace(/\D/g, "");
+                    if (v) el.value = (v/100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                }
+            });
+
+            // Remove máscara antes de enviar
             document.getElementById('formProduto').addEventListener('submit', function (e) {
+                document.querySelectorAll('.moeda').forEach(function (el) {
+                    el.value = el.value.replace(/[^\d,]/g, '').replace(',', '.');
+                });
                 var btn = document.getElementById('btnSalvar');
                 btn.disabled = true;
                 btn.innerText = 'Salvando...';

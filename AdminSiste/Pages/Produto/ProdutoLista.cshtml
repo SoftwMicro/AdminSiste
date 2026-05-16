@@ -14,7 +14,7 @@
         <tr>
             <th style="width: 120px;">Código Interno</th>
             <th style="width: 250px;">Nome do Produto</th>
-            <th style="width: 120px;">Valor</th>
+            <th style="width: 120px;">Preço</th>
             <th style="width: 120px;">Quantidade Atual</th>
             <th style="width: 200px;">Ações</th>
         </tr>
@@ -25,7 +25,7 @@
         <tr>
             <td>@produto.Codigo</td>
             <td>@produto.Nome</td>
-            <td>@produto.Preco?.ValorCustoMedio.ToString("C")</td>
+            <td>@(produto.Preco != null ? produto.Preco.ValorCustoMedio.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")) : "-")</td>
             <td>@produto.Estoque?.QuantidadeAtual</td>
             <td>
                 <div class="d-flex justify-content-center gap-2">

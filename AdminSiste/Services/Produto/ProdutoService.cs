@@ -60,7 +60,11 @@ namespace AdminSiste.Services.Produto
         }
         public IEnumerable<ProdutoModel> ListarTodos()
         {
-            return _context.Produtos.ToList();
+            return _context.Produtos
+                .Include(p => p.Preco)
+                .Include(p => p.Detalhes)
+                .Include(p => p.Estoque)
+                .ToList();
         }
     }
 }
