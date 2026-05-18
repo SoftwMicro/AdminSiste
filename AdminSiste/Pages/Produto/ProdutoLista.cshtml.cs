@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProdutoModel = AdminSiste.Models.Produto.Produto;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 namespace AdminSiste.Pages.Produto
 {
+    [Authorize]
     public class ProdutoListaModel : PageModel
     {
         private readonly IProdutoService _produtoService;

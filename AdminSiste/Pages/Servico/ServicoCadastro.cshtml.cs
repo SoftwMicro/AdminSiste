@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AdminSiste.Models.Servico;
@@ -5,6 +6,7 @@ using AdminSiste.Services.Servico;
 
 namespace AdminSiste.Pages.Servico
 {
+    [Authorize]
     public class ServicoCadastroModel : PageModel
     {
         private readonly ServicoService _servicoService;

@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ClienteModel = AdminSiste.Models.Cliente.Cliente;
 
 namespace AdminSiste.Pages.Cliente
 {
+    [Authorize]
     public class ClienteCadastroModel : PageModel
     {
         private readonly Services.Cliente.IClienteService _clienteService;

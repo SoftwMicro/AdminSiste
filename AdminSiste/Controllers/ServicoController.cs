@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AdminSiste.Models.Servico;
 using AdminSiste.Services.Servico;
@@ -7,6 +8,7 @@ using System.IO;
 namespace AdminSiste.Controllers
 {
     [Route("servico")]
+    [Authorize]
     public class ServicoController : Controller
     {
         private readonly ServicoService _servicoService;

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AdminSiste.Services.Cliente;
@@ -5,6 +6,7 @@ using System.Collections.Generic;
 
 namespace AdminSiste.Pages.Cliente
 {
+    [Authorize]
     public class ListaClientesModel : PageModel
     {
         private readonly Services.Cliente.IClienteService _clienteService;
