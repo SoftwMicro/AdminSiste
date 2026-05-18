@@ -1,0 +1,180 @@
+@page
+@model AdminSiste.Pages.Servico.ServicoCadastroModel
+@{
+    ViewData["Title"] = "Cadastro de Serviço";
+}
+<div class="card mt-5" style="min-width: 1200px;">
+    <div class="card-header">
+        <i class="fa fa-cogs"></i> Dados do Serviço
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data" id="formServico">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+            <!-- Seção 1: Dados Básicos do Serviço -->
+            <h5>Dados Básicos do Serviço</h5>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label asp-for="Servico.Nome">Nome</label>
+                    <input asp-for="Servico.Nome" class="form-control" required />
+                    <span asp-validation-for="Servico.Nome" class="text-danger"></span>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label asp-for="Servico.CodigoInterno">Código Interno</label>
+                    <input asp-for="Servico.CodigoInterno" class="form-control" readonly />
+                    <span asp-validation-for="Servico.CodigoInterno" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.ValorCusto">Valor de Custo</label>
+                    <input asp-for="Servico.ValorCusto" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.ValorCusto" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.ValorVenda">Valor de Venda</label>
+                    <input asp-for="Servico.ValorVenda" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.ValorVenda" class="text-danger"></span>
+                </div>
+                <div class="col-md-1 mb-3">
+                    <label asp-for="Servico.Comissao">Comissão (%)</label>
+                    <input asp-for="Servico.Comissao" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.Comissao" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label asp-for="Servico.Descricao">Descrição</label>
+                    <textarea asp-for="Servico.Descricao" class="form-control"></textarea>
+                    <span asp-validation-for="Servico.Descricao" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!-- Seção 2: Atividade e Classificação -->
+            <h5>Atividade e Classificação</h5>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label asp-for="Servico.AtividadeServico">Atividade de Serviço</label>
+                    <input asp-for="Servico.AtividadeServico" class="form-control" />
+                    <span asp-validation-for="Servico.AtividadeServico" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.CodigoServico">Código do Serviço</label>
+                    <input asp-for="Servico.CodigoServico" class="form-control" />
+                    <span asp-validation-for="Servico.CodigoServico" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.CodigoTributacao">Código de Tributação</label>
+                    <input asp-for="Servico.CodigoTributacao" class="form-control" />
+                    <span asp-validation-for="Servico.CodigoTributacao" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.CodigoNBS">Código NBS</label>
+                    <input asp-for="Servico.CodigoNBS" class="form-control" />
+                    <span asp-validation-for="Servico.CodigoNBS" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.CNAE">CNAE</label>
+                    <input asp-for="Servico.CNAE" class="form-control" />
+                    <span asp-validation-for="Servico.CNAE" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label asp-for="Servico.DescricaoAtividade">Descrição da Atividade</label>
+                    <input asp-for="Servico.DescricaoAtividade" class="form-control" />
+                    <span asp-validation-for="Servico.DescricaoAtividade" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!-- Seção 3: Impostos e Alíquotas (%) -->
+            <h5>Impostos e Alíquotas (%)</h5>
+            <div class="row">
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.PercentualISS">% ISS</label>
+                    <input asp-for="Servico.PercentualISS" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.PercentualISS" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.PercentualCOFINS">% COFINS</label>
+                    <input asp-for="Servico.PercentualCOFINS" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.PercentualCOFINS" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.PercentualPIS">% PIS</label>
+                    <input asp-for="Servico.PercentualPIS" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.PercentualPIS" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.PercentualCSLL">% CSLL</label>
+                    <input asp-for="Servico.PercentualCSLL" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.PercentualCSLL" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.PercentualIR">% IR</label>
+                    <input asp-for="Servico.PercentualIR" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.PercentualIR" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label asp-for="Servico.PercentualINSS">% INSS</label>
+                    <input asp-for="Servico.PercentualINSS" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Servico.PercentualINSS" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!-- Seção 4: Configurações Adicionais -->
+            <h5>Configurações Adicionais</h5>
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Servico.DescontarImpostos" class="form-check-input" />
+                        <label class="form-check-label" asp-for="Servico.DescontarImpostos">Descontar impostos do valor total</label>
+                        <span asp-validation-for="Servico.DescontarImpostos" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Servico.ConstrucaoCivil" class="form-check-input" />
+                        <label class="form-check-label" asp-for="Servico.ConstrucaoCivil">Serviços relacionados à construção civil</label>
+                        <span asp-validation-for="Servico.ConstrucaoCivil" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Servico.DescontarDeducoes" class="form-check-input" />
+                        <label class="form-check-label" asp-for="Servico.DescontarDeducoes">Descontar deduções no valor total</label>
+                        <span asp-validation-for="Servico.DescontarDeducoes" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Servico.BeneficioMunicipal" class="form-check-input" />
+                        <label class="form-check-label" asp-for="Servico.BeneficioMunicipal">Habilitar benefício municipal</label>
+                        <span asp-validation-for="Servico.BeneficioMunicipal" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <!-- Seção 5: Upload de Arquivos -->
+            <h5>Upload de Arquivos</h5>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <input type="file" asp-for="ArquivoUpload" class="form-control" />
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12 text-right">
+                    <button type="submit" class="btn btn-success" id="botaoFormularioSucesso">Salvar</button>
+                    <a asp-page="/Servico/ServicoLista" class="btn btn-secondary">Cancelar/Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

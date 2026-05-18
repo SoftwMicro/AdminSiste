@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<AdminSiste.Services.Produto.IProdutoService, AdminSiste.Services.Produto.ProdutoService>();
+builder.Services.AddScoped<AdminSiste.Services.Servico.ServicoService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {

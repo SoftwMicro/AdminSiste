@@ -17,6 +17,11 @@ namespace AdminSiste.Data
         public DbSet<AdminSiste.Models.Produto.Preco> Precos { get; set; }
         public DbSet<AdminSiste.Models.Produto.Estoque> Estoques { get; set; }
 
+        // Serviço
+        public DbSet<Models.Servico.Servico> Servicos { get; set; }
+        public DbSet<Models.Servico.ServicoAtividade> ServicoAtividades { get; set; }
+        public DbSet<Models.Servico.ServicoImpostos> ServicoImpostos { get; set; }
+
         public void Seed()
         {
                 // Verificar se já existem dados para evitar duplicação
