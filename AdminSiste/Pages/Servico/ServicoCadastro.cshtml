@@ -168,6 +168,15 @@
                 <div class="col-md-6 mb-3">
                     <input type="file" asp-for="ArquivoUpload" class="form-control" />
                 </div>
+                @if (Model.Servico != null && !string.IsNullOrEmpty(Model.Servico.ArquivoUpload))
+                {
+                    <div class="col-md-6 mb-3 d-flex align-items-center">
+                        <a class="btn btn-info" href="/servico/DownloadArquivo/@Model.Servico.Id" target="_blank">
+                            <i class="fa fa-download"></i> Download do arquivo
+                        </a>
+                        <span class="ml-2">@System.IO.Path.GetFileName(Model.Servico.ArquivoUpload)</span>
+                    </div>
+                }
             </div>
             <div class="row mt-3">
                 <div class="col-md-12 text-right">

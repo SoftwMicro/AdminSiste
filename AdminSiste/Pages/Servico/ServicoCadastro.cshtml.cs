@@ -14,9 +14,9 @@ namespace AdminSiste.Pages.Servico
         }
 
         [BindProperty]
-        public ServicoViewModel Servico { get; set; }
+        public ServicoViewModel Servico { get; set; } = new ServicoViewModel();
         [BindProperty]
-        public IFormFile ArquivoUpload { get; set; }
+        public IFormFile? ArquivoUpload { get; set; }
 
         public void OnGet(int? id = null)
         {
@@ -27,18 +27,19 @@ namespace AdminSiste.Pages.Servico
                 {
                     Servico = new ServicoViewModel
                     {
-                        Nome = servicoEntity.Nome,
-                        CodigoInterno = servicoEntity.CodigoInterno,
+                        Id = servicoEntity.Id,
+                        Nome = servicoEntity.Nome ?? string.Empty,
+                        CodigoInterno = servicoEntity.CodigoInterno ?? string.Empty,
                         ValorCusto = servicoEntity.ValorCusto,
                         ValorVenda = servicoEntity.ValorVenda,
                         Comissao = servicoEntity.Comissao,
-                        Descricao = servicoEntity.Descricao,
-                        AtividadeServico = servicoEntity.Atividade?.AtividadeServico,
-                        CodigoServico = servicoEntity.Atividade?.CodigoServico,
-                        CodigoTributacao = servicoEntity.Atividade?.CodigoTributacao,
-                        CodigoNBS = servicoEntity.Atividade?.CodigoNBS,
-                        CNAE = servicoEntity.Atividade?.CNAE,
-                        DescricaoAtividade = servicoEntity.Atividade?.DescricaoAtividade,
+                        Descricao = servicoEntity.Descricao ?? string.Empty,
+                        AtividadeServico = servicoEntity.Atividade?.AtividadeServico ?? string.Empty,
+                        CodigoServico = servicoEntity.Atividade?.CodigoServico ?? string.Empty,
+                        CodigoTributacao = servicoEntity.Atividade?.CodigoTributacao ?? string.Empty,
+                        CodigoNBS = servicoEntity.Atividade?.CodigoNBS ?? string.Empty,
+                        CNAE = servicoEntity.Atividade?.CNAE ?? string.Empty,
+                        DescricaoAtividade = servicoEntity.Atividade?.DescricaoAtividade ?? string.Empty,
                         PercentualISS = servicoEntity.Impostos?.PercentualISS ?? 0,
                         PercentualCOFINS = servicoEntity.Impostos?.PercentualCOFINS ?? 0,
                         PercentualPIS = servicoEntity.Impostos?.PercentualPIS ?? 0,
@@ -48,7 +49,8 @@ namespace AdminSiste.Pages.Servico
                         DescontarImpostos = servicoEntity.DescontarImpostos,
                         ConstrucaoCivil = servicoEntity.ConstrucaoCivil,
                         DescontarDeducoes = servicoEntity.DescontarDeducoes,
-                        BeneficioMunicipal = servicoEntity.BeneficioMunicipal
+                        BeneficioMunicipal = servicoEntity.BeneficioMunicipal,
+                        ArquivoUpload = servicoEntity.ArquivoUpload ?? string.Empty
                     };
                 }
             }
@@ -68,7 +70,7 @@ namespace AdminSiste.Pages.Servico
                 return Page();
 
             // Salvar arquivo se enviado
-            string arquivoPath = null;
+            string? arquivoPath = null;
             if (ArquivoUpload != null)
             {
                 var uploads = Path.Combine("wwwroot", "uploads");
@@ -83,6 +85,7 @@ namespace AdminSiste.Pages.Servico
             // Mapear ViewModel para Entidades
             var servico = new Models.Servico.Servico
             {
+                Id = Servico.Id,
                 Nome = Servico.Nome,
                 CodigoInterno = Servico.CodigoInterno,
                 ValorCusto = Servico.ValorCusto,

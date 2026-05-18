@@ -24,6 +24,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LogoutPath = "/Logout";
     });
 builder.Services.AddAuthorization();
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 
@@ -52,6 +53,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Habilita rotas de controllers
+app.MapControllers();
 
 
 // Redireciona a rota raiz "/" para Login
