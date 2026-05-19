@@ -16,7 +16,7 @@ namespace AdminSiste.Pages.Servico
         }
 
         [BindProperty]
-        public ServicoViewModel Servico { get; set; } = new ServicoViewModel();
+        public ServicoViewModel Servico { get; set; }
         [BindProperty]
         public IFormFile? ArquivoUpload { get; set; }
 
@@ -56,8 +56,7 @@ namespace AdminSiste.Pages.Servico
                     };
                 }
             }
-
-            if (Servico == null)
+            else
             {
                 Servico = new ServicoViewModel
                 {
@@ -116,10 +115,19 @@ namespace AdminSiste.Pages.Servico
                 ConstrucaoCivil = Servico.ConstrucaoCivil,
                 DescontarDeducoes = Servico.DescontarDeducoes,
                 BeneficioMunicipal = Servico.BeneficioMunicipal,
-                ArquivoUpload = arquivoPath
+                ArquivoUpload = arquivoPath ?? Servico.ArquivoUpload // mantém arquivo antigo se não enviar novo
             };
 
-            await _servicoService.AdicionarAsync(servico);
+            if (Servico.Id > 0)
+            {
+                await _servicoService.AtualizarAsync(servico);
+                TempData["MensagemSucesso"] = "Edição realizada com sucesso!";
+            }
+            else
+            {
+                await _servicoService.AdicionarAsync(servico);
+                TempData["MensagemSucesso"] = "Cadastro realizado com sucesso!";
+            }
             return RedirectToPage("/Servico/ServicoLista");
         }
     }

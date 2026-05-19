@@ -38,6 +38,6 @@ namespace AdminSiste.Models.Servico
         // Upload de arquivos (caminho ou nome do arquivo)
        
         [ValidateNever]
-        public string ArquivoUpload { get; set; }
+        public string ArquivoUpload { get; set; } = string.Empty;
     }
 }
