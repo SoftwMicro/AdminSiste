@@ -51,6 +51,26 @@ namespace AdminSiste.Pages.Produto
                     Produto.Estoque = new ProdutoModelEstoque();
                 return Page();
             }
+
+            // Conversão segura dos campos de valor de custo
+            try
+            {
+                var culture = System.Globalization.CultureInfo.InvariantCulture;
+                if (Request.Form.ContainsKey("Produto.Preco.ValorCustoMedio"))
+                    Produto.Preco.ValorCustoMedio = decimal.Parse(Request.Form["Produto.Preco.ValorCustoMedio"], culture);
+                if (Request.Form.ContainsKey("Produto.Preco.ValorDespesasAcessorias"))
+                    Produto.Preco.ValorDespesasAcessorias = decimal.Parse(Request.Form["Produto.Preco.ValorDespesasAcessorias"], culture);
+                if (Request.Form.ContainsKey("Produto.Preco.ValorOutrasDespesas"))
+                    Produto.Preco.ValorOutrasDespesas = decimal.Parse(Request.Form["Produto.Preco.ValorOutrasDespesas"], culture);
+                if (Request.Form.ContainsKey("Produto.Preco.ValorCusto"))
+                    Produto.Preco.ValorCusto = decimal.Parse(Request.Form["Produto.Preco.ValorCusto"], culture);
+            }
+            catch (System.Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Erro ao converter valores monetários: " + ex.Message);
+                return Page();
+            }
+
             try
             {
                 if (Produto.Id > 0)

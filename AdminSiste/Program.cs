@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuração do MySQL
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-    $"server=localhost;port=3306;database=mydb;user=dev_user;password=devpassword";
+var connectionString = builder.Configuration.GetConnectionString("HomologacaoConnection") ??
+    $"server=localhost;port=3306;database=mydb_homolog;user=hmg;password=010101";
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 

@@ -168,19 +168,19 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Preco.ValorCustoMedio">Valor de Custo</label>
-                    <input asp-for="Produto.Preco.ValorCustoMedio" class="form-control moeda" type="text" />
+                    <input asp-for="Produto.Preco.ValorCustoMedio" class="form-control moeda" type="text" value="@(Model.Produto?.Preco?.ValorCustoMedio.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")))" />
                 </div>
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Preco.ValorDespesasAcessorias">Despesas Acessórias</label>
-                    <input asp-for="Produto.Preco.ValorDespesasAcessorias" class="form-control moeda" type="text" />
+                    <input asp-for="Produto.Preco.ValorDespesasAcessorias" class="form-control moeda" type="text" value="@(Model.Produto?.Preco?.ValorDespesasAcessorias.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")))" />
                 </div>
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Preco.ValorOutrasDespesas">Outras Despesas</label>
-                    <input asp-for="Produto.Preco.ValorOutrasDespesas" class="form-control moeda" type="text" />
+                    <input asp-for="Produto.Preco.ValorOutrasDespesas" class="form-control moeda" type="text" value="@(Model.Produto?.Preco?.ValorOutrasDespesas.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")))" />
                 </div>
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Preco.ValorCusto">Custo Final</label>
-                    <input asp-for="Produto.Preco.ValorCusto" class="form-control moeda" type="text" />
+                    <input asp-for="Produto.Preco.ValorCusto" class="form-control moeda" type="text" value="@(Model.Produto?.Preco?.ValorCusto.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")))" />
                 </div>
             </div>
             <div class="row">
@@ -194,15 +194,15 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Estoque.EstoqueMinimo">Estoque Mínimo</label>
-                    <input asp-for="Produto.Estoque.EstoqueMinimo" class="form-control" type="number" step="0.01" />
+                    <input asp-for="Produto.Estoque.EstoqueMinimo" class="form-control" type="number" step="0.01" value="@(Model.Produto?.Estoque?.EstoqueMinimo.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture))" />
                 </div>
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Estoque.EstoqueMaximo">Estoque Máximo</label>
-                    <input asp-for="Produto.Estoque.EstoqueMaximo" class="form-control" type="number" step="0.01" />
+                    <input asp-for="Produto.Estoque.EstoqueMaximo" class="form-control" type="number" step="0.01" value="@(Model.Produto?.Estoque?.EstoqueMaximo.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture))" />
                 </div>
                 <div class="col-md-3 mb-3">
                     <label asp-for="Produto.Estoque.QuantidadeAtual">Quantidade Atual</label>
-                    <input asp-for="Produto.Estoque.QuantidadeAtual" class="form-control" type="number" step="0.01" />
+                    <input asp-for="Produto.Estoque.QuantidadeAtual" class="form-control" type="number" step="0.01" value="@(Model.Produto?.Estoque?.QuantidadeAtual.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture))" />
                 </div>
             </div>
             <div class="row mt-3">
