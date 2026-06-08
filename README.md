@@ -73,6 +73,51 @@ dotnet watch run
 
 4. Acesse a aplicação em `https://localhost:5001` ou `http://localhost:5000`.
 
+## Executando com Docker
+
+O projeto já inclui um `Dockerfile` e um `docker-compose.yml` para rodar a aplicação em container.
+
+### 1. Ajuste a rede e o host do MySQL
+
+Se o seu MySQL já estiver em um container conectado à rede `pedidos-network`, o `docker-compose.yml` já usa:
+
+- rede externa: `pedidos-network`
+- host do banco: `mysql-dev`
+
+### 2. Construir e iniciar o container
+
+No diretório `AdminSiste` execute:
+
+```powershell
+docker compose up --build
+```
+
+### 3. Rodar em segundo plano
+
+```powershell
+docker compose up --build -d
+```
+
+### 4. Acessar a aplicação
+
+Abra no navegador:
+
+```text
+http://localhost:5000
+```
+
+### 5. Parar e remover os containers
+
+```powershell
+docker compose down
+```
+
+### 6. Quando não for necessário rebuildar
+
+```powershell
+docker compose up
+```
+
 ## Observações
 
 - O projeto cria o banco de dados automaticamente com `db.Database.EnsureCreated()` e aplica seed inicial no startup.
