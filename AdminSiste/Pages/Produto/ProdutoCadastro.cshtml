@@ -4,7 +4,7 @@
     ViewData["Title"] = "Cadastro de Produto";
 }
 
-@if (TempData["MensagemSucesso"] != null)
+@if (!string.IsNullOrEmpty(Model.MensagemSucesso))
 {
     <div class="modal fade show" id="modalSucesso" tabindex="-1" style="display:block; background:rgba(0,0,0,0.5);"
          aria-modal="true" role="dialog">
@@ -14,15 +14,14 @@
                     <h5 class="modal-title">Sucesso</h5>
                 </div>
                 <div class="modal-body">
-                    <p>@TempData["MensagemSucesso"]</p>
+                    <p>@Model.MensagemSucesso</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="/Produto/ProdutoCadastro" class="btn btn-success">OK</a>
+                    <a href="/Produto/ProdutoLista" class="btn btn-success">OK</a>
                 </div>
             </div>
         </div>
     </div>
-    <script>setTimeout(function () { window.location.href = '/Produto/ProdutoCadastro'; }, 3000);</script>
 }
 
 <div class="card mt-5" style="min-width: 1200px;">

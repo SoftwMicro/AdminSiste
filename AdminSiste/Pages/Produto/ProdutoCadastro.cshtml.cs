@@ -19,7 +19,6 @@ namespace AdminSiste.Pages.Produto
         }
         [BindProperty]
         public ProdutoModel Produto { get; set; }
-        [TempData]
         public string MensagemSucesso { get; set; }
         public void OnGet(int? id = null)
         {
@@ -83,7 +82,8 @@ namespace AdminSiste.Pages.Produto
                     _produtoService.Salvar(Produto);
                     MensagemSucesso = "Cadastro realizado com sucesso!";
                 }
-                return RedirectToPage("/Produto/ProdutoLista");
+                // Não redirecionar imediatamente: exibir modal de sucesso e aguardar confirmação do usuário
+                return Page();
             }
             catch (System.Exception ex)
             {
