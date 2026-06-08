@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  adminsite:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__HomologacaoConnection=server=mysql;port=3306;database=homologacao;user=hmg;password=010101
+    networks:
+      - mysql-network
+
+networks:
+  mysql-network:
+    external: true
